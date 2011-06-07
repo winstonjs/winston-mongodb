@@ -21,7 +21,8 @@ The [winston][0] codebase has been growing significantly with contributions and 
 
 ## Usage
 ``` js
-  winston.add(winston.transports.MongoDB, options);
+  var MongoDB = require('winston-mongoDB').MongoDB;
+  winston.add(MongoDB, options);
 ```
 
 The MongoDB transport takes the following options. 'db' is required:
