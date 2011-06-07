@@ -9,7 +9,7 @@ A MongoDB transport for [winston][0].
   curl http://npmjs.org/install.sh | sh
 ```
 
-### Installing winston
+### Installing winston-mongodb
 ```
   [sudo] npm install winston-mongodb
 ```
