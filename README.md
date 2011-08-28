@@ -5,13 +5,16 @@ A MongoDB transport for [winston][0].
 ## Installation
 
 ### Installing npm (node package manager)
-```
-  curl http://npmjs.org/install.sh | sh
+
+``` bash
+  $ curl http://npmjs.org/install.sh | sh
 ```
 
 ### Installing winston-mongodb
-```
-  [sudo] npm install winston-mongodb
+
+``` bash
+  $ npm install winston
+  $ npm install winston-mongodb
 ```
 
 ## Motivation
@@ -21,8 +24,15 @@ The [winston][0] codebase has been growing significantly with contributions and 
 
 ## Usage
 ``` js
-  var MongoDB = require('winston-mongoDB').MongoDB;
-  winston.add(MongoDB, options);
+  var winston = require('winston');
+  
+  //
+  // Requiring `winston-mongodb` will expose 
+  // `winston.transports.MongoDB`
+  //
+  require('winston-mongodb').MongoDB;
+  
+  winston.add(winston.transports.MongoDB, options);
 ```
 
 The MongoDB transport takes the following options. 'db' is required:
