@@ -50,6 +50,6 @@ The MongoDB transport takes the following options. 'db' is required:
 *Metadata:* Logged as a native JSON object.
 
 #### Author: [Charlie Robbins](http://blog.nodejitsu.com)
-#### Contributors: [Kendrick Taylor](https://github.com/sktaylor) [Yosef Dinerstein](https://github.com/yosefd)
+#### Contributors: [Kendrick Taylor](https://github.com/sktaylor), [Yosef Dinerstein](https://github.com/yosefd)
 
 [0]: https://github.com/indexzero/winston
