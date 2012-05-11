@@ -15,8 +15,8 @@
     "mongodb": "0.9.x"
   },
   "devDependencies": {
-    "winston": "0.4.x",
-    "vows": "0.5.x"
+    "winston": "0.5.x",
+    "vows": "0.6.x"
   },
   "main": "./lib/winston-mongodb",
   "scripts": { "test": "vows test/*-test.js --spec" },
