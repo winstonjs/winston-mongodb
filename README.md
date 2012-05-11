@@ -44,6 +44,7 @@ The MongoDB transport takes the following options. 'db' is required:
 * __safe:__ Boolean indicating if you want eventual consistency on your log messages, if set to true it requires an extra round trip to the server to ensure the write was committed, defaults to true.
 * __host:__ The host running MongoDB, defaults to localhost.
 * __port:__ The port on the host that MongoDB is running on, defaults to MongoDB's default port.
+* __formatter:__ Optional formatter function to override the structure of the entry inserted into MongoDB
 
 *Metadata:* Logged as a native JSON object.
 
