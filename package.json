@@ -1,7 +1,7 @@
 {
   "name": "winston-mongodb",
-  "description": "A MongoDB transport for winston",
   "version": "0.3.4",
+  "description": "A MongoDB transport for winston",
   "author": "Charlie Robbins <charlie.robbins@gmail.com>",
   "contributors": [
     { "name": "Kendrick Taylor", "email": "sktayloriii@gmail.com", "email": "yosefd@microsoft.com" }
