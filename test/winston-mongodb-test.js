@@ -14,9 +14,9 @@ var path = require('path'),
     transport = require('winston/test/transports/transport'),
     MongoDB = require('../lib/winston-mongodb').MongoDB;
 
-var config = helpers.loadConfig(__dirname);
-
 vows.describe('winston-mongodb').addBatch({
-  "An instance of the MongoDB Transport":
-    transport(MongoDB, config.transports.mongodb)
+  "An instance of the MongoDB Transport": transport(MongoDB, {
+    db: 'winston',
+    keepAlive: 1000
+  })
 }).export(module);
