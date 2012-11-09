@@ -31,7 +31,7 @@ The MongoDB transport takes the following options. 'db' is required:
 * __host:__ The host running MongoDB, defaults to localhost.
 * __port:__ The port on the host that MongoDB is running on, defaults to MongoDB's default port.
 * __errorTimeout:__  Reconnect timeout upon connection error from Mongo, defaults to 10 seconds (10000).
-* __timeoout:__ Timeout for keeping idle connection to Mongo alive, defaults to 10 seconds (10000).
+* __timeout:__ Timeout for keeping idle connection to Mongo alive, defaults to 10 seconds (10000).
 
 *Metadata:* Logged as a native JSON object.
 
