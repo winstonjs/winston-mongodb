@@ -55,4 +55,4 @@ The MongoDB transport takes the following options. 'db' is required:
 #### Author: [Charlie Robbins](http://blog.nodejitsu.com)
 #### Contributors: [Kendrick Taylor](https://github.com/sktaylor), [Yosef Dinerstein](https://github.com/yosefd)
 
-[0]: https://github.com/indexzero/winston
+[0]: http://github.com/flatiron/winston
