@@ -30,6 +30,8 @@ The MongoDB transport takes the following options. 'db' is required:
 * __safe:__ Boolean indicating if you want eventual consistency on your log messages, if set to true it requires an extra round trip to the server to ensure the write was committed, defaults to true.
 * __host:__ The host running MongoDB, defaults to localhost.
 * __port:__ The port on the host that MongoDB is running on, defaults to MongoDB's default port.
+* __username:__ The username to use when logging into MongoDB.
+* __password:__ The password to use when logging into MongoDB. If you don't supply a username and password it will not use MongoDB authentication.
 * __errorTimeout:__  Reconnect timeout upon connection error from Mongo, defaults to 10 seconds (10000).
 * __timeout:__ Timeout for keeping idle connection to Mongo alive, defaults to 10 seconds (10000).
 
@@ -53,4 +55,4 @@ The MongoDB transport takes the following options. 'db' is required:
 #### Author: [Charlie Robbins](http://blog.nodejitsu.com)
 #### Contributors: [Kendrick Taylor](https://github.com/sktaylor), [Yosef Dinerstein](https://github.com/yosefd)
 
-[0]: https://github.com/indexzero/winston
+[0]: https://github.com/flatiron/winston
