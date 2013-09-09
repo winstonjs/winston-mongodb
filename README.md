@@ -26,7 +26,7 @@ The MongoDB transport takes the following options. 'db' is required:
 * __silent:__ Boolean flag indicating whether to suppress output, defaults to false.
 
 * __db:__ The name of the database you want to log to. *[required]*
-* __collection__: The name of the collection you want to store log messages in, defaults to 'log'.
+* __collection__: The name of the collection you want to store log messages in, defaults to 'logs'.
 * __safe:__ Boolean indicating if you want eventual consistency on your log messages, if set to true it requires an extra round trip to the server to ensure the write was committed, defaults to true.
 * __nativeParser:__ Boolean indicating if you want the driver to use native parser feature or not.
 * __host:__ The host running MongoDB, defaults to localhost.
@@ -55,6 +55,6 @@ The MongoDB transport takes the following options. 'db' is required:
 ```
 
 #### Author: [Charlie Robbins](http://blog.nodejitsu.com)
-#### Contributors: [Kendrick Taylor](https://github.com/sktaylor), [Yosef Dinerstein](https://github.com/yosefd)
+#### Contributors: [Kendrick Taylor](https://github.com/sktaylor), [Yosef Dinerstein](https://github.com/yosefd), [Yurij Mikhalevich](https://github.com/39dotyt)
 
 [0]: https://github.com/flatiron/winston
