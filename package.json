@@ -5,7 +5,8 @@
   "author": "Charlie Robbins <charlie.robbins@gmail.com>",
   "contributors": [
     { "name": "Kendrick Taylor", "email": [ "sktayloriii@gmail.com", "yosefd@microsoft.com" ] },
-    { "name": "Yurij Mikhalevich", "email": "0@39.yt" }
+    { "name": "Yurij Mikhalevich", "email": "0@39.yt" },
+    { "name": "Steve Dalby", "email": "steve@stevedalby.co.uk" }    
   ],
   "repository": {
     "type": "git",
