@@ -36,6 +36,8 @@ The MongoDB transport takes the following options. 'db' is required:
 * __errorTimeout:__  Reconnect timeout upon connection error from Mongo, defaults to 10 seconds (10000).
 * __timeout:__ Timeout for keeping idle connection to Mongo alive, defaults to 10 seconds (10000).
 * __storeHost:__ Boolean indicating if you want to store machine hostname in logs entry, if set to true it populates MongoDB entry with 'hostname' field, which stores os.hostname() value.
+* __ssl:__ Boolean indicating if you want to use SSL connections or not.
+* __authDb:__ Authentication database object.
 
 *Metadata:* Logged as a native JSON object.
 
@@ -55,6 +57,6 @@ The MongoDB transport takes the following options. 'db' is required:
 ```
 
 #### Author: [Charlie Robbins](http://blog.nodejitsu.com)
-#### Contributors: [Kendrick Taylor](https://github.com/sktaylor), [Yosef Dinerstein](https://github.com/yosefd), [Yurij Mikhalevich](https://github.com/39dotyt)
+#### Contributors: [Kendrick Taylor](https://github.com/sktaylor), [Yosef Dinerstein](https://github.com/yosefd), [Yurij Mikhalevich](https://github.com/39dotyt), [Steve Dalby](https://github.com/stevedalby)
 
 [0]: https://github.com/flatiron/winston
