@@ -25,7 +25,7 @@ The MongoDB transport takes the following options. 'db' is required:
 * __level:__ Level of messages that this transport should log, defaults to 'info'.
 * __silent:__ Boolean flag indicating whether to suppress output, defaults to false.
 
-* __db:__ The name of the database you want to log to. *[required]*
+* __db:__ The name of the database you want to log to.
 * __collection__: The name of the collection you want to store log messages in, defaults to 'logs'.
 * __safe:__ Boolean indicating if you want eventual consistency on your log messages, if set to true it requires an extra round trip to the server to ensure the write was committed, defaults to true.
 * __nativeParser:__ Boolean indicating if you want the driver to use native parser feature or not.
@@ -38,8 +38,17 @@ The MongoDB transport takes the following options. 'db' is required:
 * __storeHost:__ Boolean indicating if you want to store machine hostname in logs entry, if set to true it populates MongoDB entry with 'hostname' field, which stores os.hostname() value.
 * __ssl:__ Boolean indicating if you want to use SSL connections or not.
 * __authDb:__ Authentication database object.
+* __dbUri:__ Alternative way of specifying database connection data. Note, that __replica sets are unsupported__. If you specify a replica set or multiple databases, will be used first database connection data.
+
+*Notice:* __db__ is required. You should specify it directly or in __dbUri__.
 
 *Metadata:* Logged as a native JSON object.
+
+## Querying and streaming logs
+
+Besides supporting the main options from winston, this transport supports the following extra options:
+
+* __includeIds:__ Whether the returned logs should include the `_id` attribute settled by mongodb, defaults to `false`.
 
 ## Installation
 
