@@ -41,6 +41,12 @@ The MongoDB transport takes the following options. 'db' is required:
 
 *Metadata:* Logged as a native JSON object.
 
+## Querying Logs
+
+Besides supporting the main options from winston, this transport supports the following extra options:
+
+* __includeIds:__ Whether the returned logs should include the `_id` attribute settled by mongodb, defaults to `false`.
+
 ## Installation
 
 ### Installing npm (node package manager)
