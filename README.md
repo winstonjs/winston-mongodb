@@ -38,9 +38,13 @@ The MongoDB transport takes the following options. 'db' is required:
 * __storeHost:__ Boolean indicating if you want to store machine hostname in logs entry, if set to true it populates MongoDB entry with 'hostname' field, which stores os.hostname() value.
 * __ssl:__ Boolean indicating if you want to use SSL connections or not.
 * __authDb:__ Authentication database object.
-* __dbUri:__ Alternative way of specifying database connection data. Note, that __replica sets are unsupported__. If you specify a replica set or multiple databases, will be used first database connection data.
+* __replSet:__ Replica set name.
+* __hosts:__ Array of replica set hosts (in format ```{host: 'string', port: 'number'}```)
+* __dbUri:__ Alternative way of specifying database connection data. Supported specifying database, host, port, username, password and replica sets.
 
 *Notice:* __db__ is required. You should specify it directly or in __dbUri__.
+
+*ReplicaSet Notice:* If you use replica set, __db__, __replSet__ and __hosts__ are required. They may also be specified in __dbUri__.
 
 *Metadata:* Logged as a native JSON object.
 

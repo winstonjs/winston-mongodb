@@ -1,6 +1,6 @@
 {
   "name": "winston-mongodb",
-  "version": "0.4.5",
+  "version": "0.4.6",
   "description": "A MongoDB transport for winston",
   "author": "Charlie Robbins <charlie.robbins@gmail.com>",
   "contributors": [
