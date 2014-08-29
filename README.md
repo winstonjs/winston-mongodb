@@ -51,6 +51,7 @@ defaults to 10 seconds (10000).
 * __storeHost:__ Boolean indicating if you want to store machine hostname in
 logs entry, if set to true it populates MongoDB entry with 'hostname' field,
 which stores os.hostname() value.
+* __label:__ Label stored with entry object if defined.
 * __ssl:__ Boolean indicating if you want to use SSL connections or not.
 * __authDb:__ Authentication database object.
 * __replSet:__ Replica set name.
