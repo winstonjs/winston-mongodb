@@ -1,6 +1,6 @@
 {
   "name": "winston-mongodb",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "description": "A MongoDB transport for winston",
   "author": "Charlie Robbins <charlie.robbins@gmail.com>",
   "contributors": [
@@ -18,7 +18,7 @@
     "muri": "0.3.x"
   },
   "devDependencies": {
-    "winston": "0.7.x",
+    "winston": "0.8.x",
     "vows": "0.7.x"
   },
   "main": "./lib/winston-mongodb",
