@@ -59,6 +59,7 @@ which stores os.hostname() value.
 `{host: 'string', port: 'number'}`)
 * __dbUri:__ Alternative way of specifying database connection data. Supported
 specifying database, host, port, username, password and replica sets.
+* __name:__ Transport instance identifier. Useful if you need to create multiple MongoDB transports.
 
 *Notice:* __db__ is required. You should specify it directly or in __dbUri__.
 
