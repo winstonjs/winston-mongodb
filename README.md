@@ -3,6 +3,9 @@
 
 A MongoDB transport for [winston][0].
 
+Current version supports only mongodb driver version 2.x. If you want to use
+winston-mongodb with mongodb version 1.4.x use winston-mongodb <1.x.
+
 ## Motivation
 `tldr;?`: To break the [winston][0] codebase into small modules that work
 together.
@@ -16,10 +19,10 @@ and a File is overkill.
 ``` js
   var winston = require('winston');
   
-  //
-  // Requiring `winston-mongodb` will expose 
-  // `winston.transports.MongoDB`
-  //
+  /**
+   * Requiring `winston-mongodb` will expose
+   * `winston.transports.MongoDB`
+   */
   require('winston-mongodb').MongoDB;
   
   winston.add(winston.transports.MongoDB, options);
@@ -31,43 +34,25 @@ The MongoDB transport takes the following options. 'db' is required:
 'info'.
 * __silent:__ Boolean flag indicating whether to suppress output, defaults to
 false.
-
-* __db:__ The name of the database you want to log to.
+* __db:__ MongoDB connection uri or preconnected db object.
+* __options:__ MongoDB connection parameters (optional, defaults to
+`{db: {native_parser: true}, server: {poolSize: 2, socketOptions: {autoReconnect: true}}}`).
 * __collection__: The name of the collection you want to store log messages in,
 defaults to 'logs'.
-* __safe:__ Boolean indicating if you want eventual consistency on your log
-messages, if set to true it requires an extra round trip to the server to ensure the write was committed, defaults to true.
-* __nativeParser:__ Boolean indicating if you want the driver to use native
-parser feature or not.
-* __host:__ The host running MongoDB, defaults to localhost.
-* __port:__ The port on the host that MongoDB is running on, defaults to
-MongoDB's default port.
-* __username:__ The username to use when logging into MongoDB.
-* __password:__ The password to use when logging into MongoDB. If you don't
-supply a username and password it will not use MongoDB authentication.
-* __errorTimeout:__  Reconnect timeout upon connection error from Mongo,
-defaults to 10 seconds (10000).
-* __timeout:__ Timeout for keeping idle connection to Mongo alive, defaults to
-10 seconds (10000).
 * __storeHost:__ Boolean indicating if you want to store machine hostname in
 logs entry, if set to true it populates MongoDB entry with 'hostname' field,
 which stores os.hostname() value.
+* __username:__ The username to use when logging into MongoDB.
+* __password:__ The password to use when logging into MongoDB. If you don't
+supply a username and password it will not use MongoDB authentication.
 * __label:__ Label stored with entry object if defined.
-* __ssl:__ Boolean indicating if you want to use SSL connections or not.
-* __authDb:__ Authentication database object.
-* __replSet:__ Replica set name.
-* __hosts:__ Array of replica set hosts (in format
-`{host: 'string', port: 'number'}`)
-* __dbUri:__ Alternative way of specifying database connection data. Supported
-specifying database, host, port, username, password and replica sets.
-* __name:__ Transport instance identifier. Useful if you need to create multiple MongoDB transports.
+* __name:__ Transport instance identifier. Useful if you need to create multiple
+MongoDB transports.
+* __capped:__ In case this property is true, winston-mongodb will try to create
+new log collection as capped, defaults to false.
+* __cappedSize:__ Size of logs capped collection in bytes, defaults to 10000000.
 
-*Notice:* __db__ is required. You should specify it directly or in __dbUri__.
-
-*ReplicaSet Notice:* If you use replica set, __db__, __replSet__ and __hosts__
-are required. They may also be specified in __dbUri__.
-
-*Metadata:* Logged as a native JSON object in meta property.
+*Metadata:* Logged as a native JSON object in 'meta' property.
 
 *Logging unhandled exceptions:* For logging unhandled exceptions specify
 winston-mongodb as `handleExceptions` logger according to winston documentation.
@@ -82,20 +67,26 @@ settled by mongodb, defaults to `false`.
 
 ## Installation
 
-### Installing npm (node package manager)
-
-``` bash
-  $ curl http://npmjs.org/install.sh | sh
-```
-
-### Installing winston-mongodb
-
 ``` bash
   $ npm install winston
   $ npm install winston-mongodb
 ```
 
 ## Changelog
+
+### Brief 1.0.0 changelog
+
+* migrated to mongodb 2.x driver;
+* changed configuration format to MongoDB uri string;
+* added support of passing preconnected db object instead of MongoDB uri string;
+* added support of passing MongoDB connection parameters in options property;
+* added support of replica sets through new options and db properties;
+* migrated to [Semantic Versioning](http://semver.org/) in package versions names;
+* changed comments format to JSDoc;
+* removed authDb from configuration options (it's impossible to handle all
+possible authorization scenarios, so, if you need to use complicated
+authorization pattern, please provide winston-mongodb with already prepared
+db connection object).
 
 ### Brief 0.5 changelog
 
