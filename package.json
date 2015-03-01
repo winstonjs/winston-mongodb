@@ -1,7 +1,7 @@
 {
   "name": "winston-mongodb",
   "license": "MIT",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A MongoDB transport for winston",
   "author": "Charlie Robbins <charlie.robbins@gmail.com>",
   "contributors": [
@@ -21,6 +21,6 @@
     "winston": "0.9.x",
     "vows": "0.8.x"
   },
-  "mainDb": "./lib/winston-mongodb",
+  "main": "./lib/winston-mongodb",
   "scripts": { "test": "vows test/*-test.js --spec" }
 }
