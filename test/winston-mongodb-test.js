@@ -7,6 +7,8 @@
  */
 
 var vows = require('vows');
+var mongodb = require('mongodb');
+var Promise = require('bluebird');
 var transport = require('winston/test/transports/transport');
 var MongoDB = require('../lib/winston-mongodb').MongoDB;
 
@@ -14,10 +16,24 @@ vows.describe('winston-mongodb').addBatch({
   'An instance of the MongoDB Transport': transport(MongoDB, {
     db: 'mongodb://localhost/winston'
   }),
-  'And instance of the MongoDB Transport on capped collection':
+  'An instance of the MongoDB Transport on capped collection':
       transport(MongoDB, {
         db: 'mongodb://localhost/winston',
         capped: true,
-        collection: 'cappedLogs'
+        collection: 'cappedLog'
+      })
+}).addBatch({
+  'An instance of the MongoDB Transport with promise':
+      transport(MongoDB, {
+        db: new Promise(function(resolve, reject) {
+          mongodb.MongoClient.connect('mongodb://localhost/winston',
+              function(err, db) {
+                if (err) {
+                  reject(err);
+                } else {
+                  resolve(db);
+                }
+              });
+        })
       })
 }).export(module);

@@ -34,11 +34,12 @@ The MongoDB transport takes the following options. 'db' is required:
 'info'.
 * __silent:__ Boolean flag indicating whether to suppress output, defaults to
 false.
-* __db:__ MongoDB connection uri or preconnected db object.
+* __db:__ MongoDB connection uri, pre-connected db object or promise object
+which will be resolved with pre-connected db object.
 * __options:__ MongoDB connection parameters (optional, defaults to
 `{db: {native_parser: true}, server: {poolSize: 2, socketOptions: {autoReconnect: true}}}`).
 * __collection__: The name of the collection you want to store log messages in,
-defaults to 'logs'.
+defaults to 'log'.
 * __storeHost:__ Boolean indicating if you want to store machine hostname in
 logs entry, if set to true it populates MongoDB entry with 'hostname' field,
 which stores os.hostname() value.
@@ -74,11 +75,21 @@ settled by mongodb, defaults to `false`.
 
 ## Changelog
 
+### Brief 1.1.0 changelog
+
+* added support of passing promises objects which will be resolved with
+pre-connected db object in options.db;
+* fixed issue when events logged sometime between authorizeDb and
+processOpQuery calls may be lost;
+* renamed default log collection to 'log' because it makes more sense than
+'logs' ('log' is a list of messages already, plural form would imply
+multiple of such lists).
+
 ### Brief 1.0.0 changelog
 
 * migrated to mongodb 2.x driver;
 * changed configuration format to MongoDB uri string;
-* added support of passing preconnected db object instead of MongoDB uri string;
+* added support of passing pre-connected db object instead of MongoDB uri string;
 * added support of passing MongoDB connection parameters in options property;
 * added support of replica sets through new options and db properties;
 * migrated to [Semantic Versioning](http://semver.org/) in package versions names;
