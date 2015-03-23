@@ -15,7 +15,8 @@
   },
   "keywords": ["logging", "sysadmin", "tools", "winston", "mongodb", "log", "logger"],
   "dependencies": {
-    "mongodb": "2.0.x"
+    "mongodb": "2.0.x",
+    "q": "1.2.x"
   },
   "devDependencies": {
     "winston": "0.9.x",
