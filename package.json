@@ -15,12 +15,12 @@
   },
   "keywords": ["logging", "sysadmin", "tools", "winston", "mongodb", "log", "logger"],
   "dependencies": {
-    "mongodb": "2.0.x"
+    "mongodb": ">=2.0.46 <3.0.0"
   },
   "devDependencies": {
-    "winston": "0.9.x",
+    "winston": ">=1.1.1 <2.0.0",
     "vows": "0.8.x",
-    "bluebird": "2.9.x"
+    "bluebird": ">=2.10.2 <3.0.0"
   },
   "main": "./lib/winston-mongodb",
   "scripts": { "test": "vows test/*-test.js --spec" }
