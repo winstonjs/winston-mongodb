@@ -50,9 +50,9 @@ supply a username and password it will not use MongoDB authentication.
 * __name:__ Transport instance identifier. Useful if you need to create multiple
 MongoDB transports.
 * __capped:__ In case this property is true, winston-mongodb will try to create
-new log collection as capped, defaults to false. If set to true, cappedSize and cappedMax will default to 10000000. MongoDB will delete the oldest record once a maximum limit is reached. cappedSize takes precedence over cappedMax.
+new log collection as capped, defaults to false.
 * __cappedSize:__ Size of logs capped collection in bytes, defaults to 10000000.
-* __cappedMax:__ Size of logs capped collection in number of documents, defaults to 10000000. (Automatically overridden by cappedSize:)
+* __cappedMax:__ Size of logs capped collection in number of documents.
 
 *Metadata:* Logged as a native JSON object in 'meta' property.
 
