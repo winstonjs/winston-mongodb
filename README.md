@@ -76,37 +76,7 @@ settled by mongodb, defaults to `false`.
   $ npm install winston-mongodb
 ```
 
-## Changelog
-
-### Brief 1.1.0 changelog
-
-* added support of passing promises objects which will be resolved with
-pre-connected db object in options.db;
-* fixed issue when events logged sometime between authorizeDb and
-processOpQuery calls may be lost;
-* renamed default log collection to 'log' because it makes more sense than
-'logs' ('log' is a list of messages already, plural form would imply
-multiple of such lists).
-
-### Brief 1.0.0 changelog
-
-* migrated to mongodb 2.x driver;
-* changed configuration format to MongoDB uri string;
-* added support of passing pre-connected db object instead of MongoDB uri string;
-* added support of passing MongoDB connection parameters in options property;
-* added support of replica sets through new options and db properties;
-* migrated to [Semantic Versioning](http://semver.org/) in package versions names;
-* changed comments format to JSDoc;
-* removed authDb from configuration options (it's impossible to handle all
-possible authorization scenarios, so, if you need to use complicated
-authorization pattern, please provide winston-mongodb with already prepared
-db connection object).
-
-### Brief 0.5 changelog
-
-* metadata is now stored into separate property `meta`; so, there is no risk
-that some of the metadata object's properties will conflict with logging entry
-properties.
+## [Changelog](https://github.com/winstonjs/winston-mongodb/releases)
 
 #### Author: [Charlie Robbins](http://blog.nodejitsu.com)
 #### Contributors: [Yurij Mikhalevich](https://github.com/39dotyt), [Kendrick Taylor](https://github.com/sktaylor), [Yosef Dinerstein](https://github.com/yosefd), [Steve Dalby](https://github.com/stevedalby)
