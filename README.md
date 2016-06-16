@@ -18,13 +18,13 @@ and a File is overkill.
 ## Usage
 ``` js
   var winston = require('winston');
-  
+
   /**
    * Requiring `winston-mongodb` will expose
    * `winston.transports.MongoDB`
    */
   require('winston-mongodb').MongoDB;
-  
+
   winston.add(winston.transports.MongoDB, options);
 ```
 
@@ -55,6 +55,8 @@ new log collection as capped, defaults to false.
 * __cappedMax:__ Size of logs capped collection in number of documents.
 * __tryReconnect:__ Will try to reconnect to the database in case of fail during
 initialization. Works only if __db__ is a string. Defaults to false.
+* __decolorize__ Will remove color attributes from the log entry message,
+defaults to false.
 
 *Metadata:* Logged as a native JSON object in 'meta' property.
 
