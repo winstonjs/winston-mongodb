@@ -23,5 +23,8 @@
     "bluebird": ">=2.10.2 <4.0.0"
   },
   "main": "./lib/winston-mongodb",
-  "scripts": { "test": "vows test/*-test.js --spec" }
+  "scripts": {
+      "test": "vows test/*-test.js --spec"
+  },
+  "typings": "./lib/winston-mongodb.d.ts"
 }
