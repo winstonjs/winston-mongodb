@@ -55,9 +55,9 @@ new log collection as capped, defaults to false.
 * __cappedMax:__ Size of logs capped collection in number of documents.
 * __tryReconnect:__ Will try to reconnect to the database in case of fail during
 initialization. Works only if __db__ is a string. Defaults to false.
-* __decolorize__ Will remove color attributes from the log entry message,
+* __decolorize:__ Will remove color attributes from the log entry message,
 defaults to false.
-* __expireAfterSeconds__ Seconds before the entry is removed. Works only if __capped__ is not set.
+* __expireAfterSeconds:__ Seconds before the entry is removed. Works only if __capped__ is not set.
 
 *Metadata:* Logged as a native JSON object in 'meta' property.
 
