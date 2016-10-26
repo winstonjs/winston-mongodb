@@ -6,7 +6,7 @@
   "author": "Charlie Robbins <charlie.robbins@gmail.com>",
   "contributors": [
     { "name": "Yurij Mikhalevich", "email": "0@39.yt", "url": "https://39.yt/" },
-    { "name": "Kendrick Taylor", "email": [ "sktayloriii@gmail.com", "yosefd@microsoft.com" ] },
+    { "name": "Kendrick Taylor", "email": "sktayloriii@gmail.com" },
     { "name": "Steve Dalby", "email": "steve@stevedalby.co.uk" }
   ],
   "repository": {
@@ -23,8 +23,6 @@
     "bluebird": ">=2.10.2 <4.0.0"
   },
   "main": "./lib/winston-mongodb",
-  "scripts": {
-      "test": "vows test/*-test.js --spec"
-  },
+  "scripts": { "test": "vows test/*-test.js --spec" },
   "typings": "./lib/winston-mongodb.d.ts"
 }
