@@ -1,13 +1,13 @@
 {
   "name": "winston-mongodb",
   "license": "MIT",
-  "version": "1.6.4",
+  "version": "2.0.0-alpha.0",
   "description": "A MongoDB transport for winston",
   "author": "Charlie Robbins <charlie.robbins@gmail.com>",
   "contributors": [
-    { "name": "Yurij Mikhalevich", "email": "0@39.yt", "url": "https://39.yt/" },
-    { "name": "Kendrick Taylor", "email": "sktayloriii@gmail.com" },
-    { "name": "Steve Dalby", "email": "steve@stevedalby.co.uk" }
+    {"name": "Yurij Mikhalevich", "email": "0@39.yt", "url": "https://39.yt/"},
+    {"name": "Kendrick Taylor", "email": "sktayloriii@gmail.com"},
+    {"name": "Steve Dalby", "email": "steve@stevedalby.co.uk"}
   ],
   "repository": {
     "type": "git",
@@ -22,7 +22,8 @@
     "vows": "~0.8.1",
     "bluebird": ">=2.10.2 <4.0.0"
   },
+  "engines": {"node" : ">=6.8.1"},
   "main": "./lib/winston-mongodb",
-  "scripts": { "test": "vows test/*-test.js --spec" },
+  "scripts": {"test": "vows test/*-test.js --spec"},
   "typings": "./lib/winston-mongodb.d.ts"
 }
