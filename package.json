@@ -1,7 +1,7 @@
 {
   "name": "winston-mongodb",
   "license": "MIT",
-  "version": "1.6.3",
+  "version": "1.6.4",
   "description": "A MongoDB transport for winston",
   "author": "Charlie Robbins <charlie.robbins@gmail.com>",
   "contributors": [
