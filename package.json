@@ -19,8 +19,7 @@
   },
   "devDependencies": {
     "winston": ">=1.1.1 <3.0.0",
-    "vows": "~0.8.1",
-    "bluebird": ">=2.10.2 <4.0.0"
+    "vows": "~0.8.1"
   },
   "engines": {"node" : ">=6.8.1"},
   "main": "./lib/winston-mongodb",
