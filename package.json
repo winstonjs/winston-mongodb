@@ -23,6 +23,9 @@
   },
   "engines": {"node" : ">=6.8.1"},
   "main": "./lib/winston-mongodb",
-  "scripts": {"test": "vows test/*-test.js --spec"},
+  "scripts": {
+    "test": "vows test/*-test.js --spec",
+    "test-rs": "vows test/*-test-rs.js --spec"
+  },
   "typings": "./lib/winston-mongodb.d.ts"
 }
