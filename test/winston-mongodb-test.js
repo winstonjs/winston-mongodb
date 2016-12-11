@@ -10,7 +10,8 @@ const vows = require('vows');
 const mongodb = require('mongodb');
 const transport = require('winston/test/transports/transport');
 const MongoDB = require('../lib/winston-mongodb').MongoDB;
-const dbUrl = 'mongodb://localhost/winston';
+const dbUrl = process.env.USER_WINSTON_MONGODB_URL
+    ||process.env.WINSTON_MONGODB_URL||'mongodb://localhost/winston';
 
 vows.describe('winston-mongodb').addBatch({
   '{db: url}': transport(MongoDB, {db: dbUrl}),

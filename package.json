@@ -25,7 +25,7 @@
   "main": "./lib/winston-mongodb",
   "scripts": {
     "test": "vows test/*-test.js --spec",
-    "test-rs": "vows test/*-test-rs.js --spec"
+    "test-rs": "WINSTON_MONGODB_URL='mongodb://localhost:27017,localhost:27018/winston?replicaSet=rs0' vows test/*-test.js --spec"
   },
   "typings": "./lib/winston-mongodb.d.ts"
 }
