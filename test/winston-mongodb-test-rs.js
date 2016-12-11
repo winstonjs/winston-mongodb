@@ -1,5 +1,5 @@
 /**
- * @module 'winston-mongodb-test'
+ * @module 'winston-mongodb-test-rs'
  * @fileoverview Tests for instances of the MongoDB transport
  * @license MIT
  * @author charlie@nodejitsu.com (Charlie Robbins)
@@ -10,23 +10,18 @@ const vows = require('vows');
 const mongodb = require('mongodb');
 const transport = require('winston/test/transports/transport');
 const MongoDB = require('../lib/winston-mongodb').MongoDB;
+const dbUrl = 'mongodb://localhost:27017,localhost:27018/winston?replicaSet=rs0';
 
 vows.describe('winston-mongodb').addBatch({
-  '{db: url}': transport(MongoDB, {db: 'mongodb://localhost:27017,localhost:27018/winston?replicaSet=rs0'}),
+  '{db: url}': transport(MongoDB, {db: dbUrl}),
+}).addBatch({'{db: url} on capped collection': transport(MongoDB,
+    {db: dbUrl, capped: true, collection: 'cappedLog'}),
 }).addBatch({
-  '{db: url} on capped collection': transport(MongoDB, {
-    db: 'mongodb://localhost:27017,localhost:27018/winston?replicaSet=rs0',
-    capped: true,
-    collection: 'cappedLog'
-  }),
-}).addBatch({
-  '{db: promise}': transport(MongoDB, {
-    db: mongodb.MongoClient.connect('mongodb://localhost:27017,localhost:27018/winston?replicaSet=rs0')
-  })
+  '{db: promise}': transport(MongoDB, {db: mongodb.MongoClient.connect(dbUrl)})
 }).addBatch({
   '{db: preconnected}': {
     topic: function(){
-      mongodb.MongoClient.connect('mongodb://localhost:27017,localhost:27018/winston?replicaSet=rs0', this.callback);
+      mongodb.MongoClient.connect(dbUrl, this.callback);
     },
     prepare: function(db){
       Object.assign(this.context.tests.test, transport(MongoDB, {db}));
