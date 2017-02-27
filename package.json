@@ -15,7 +15,7 @@
   },
   "keywords": ["logging", "sysadmin", "tools", "winston", "mongodb", "log", "logger"],
   "dependencies": {
-    "mongodb": "^2.0.46"
+    "mongodb": "^2.2.19"
   },
   "devDependencies": {
     "winston": ">=1.1.1 <3.0.0",
