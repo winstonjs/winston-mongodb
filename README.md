@@ -1,5 +1,5 @@
 # winston
-[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/indexzero/winston-mongodb?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+[![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg)](https://gitter.im/indexzero/winston-mongodb?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 A MongoDB transport for [winston][0].
 
@@ -23,7 +23,7 @@ and a File is overkill.
    * Requiring `winston-mongodb` will expose
    * `winston.transports.MongoDB`
    */
-  require('winston-mongodb').MongoDB;
+  require('winston-mongodb');
 
   winston.add(winston.transports.MongoDB, options);
 ```
