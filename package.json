@@ -33,6 +33,7 @@
     "logger"
   ],
   "dependencies": {
+    "@types/winston": "^2.3.2",
     "mongodb": "^2.2.19"
   },
   "devDependencies": {
