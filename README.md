@@ -23,7 +23,7 @@ and a File is overkill.
    * Requiring `winston-mongodb` will expose
    * `winston.transports.MongoDB`
    */
-  require('winston-mongodb').MongoDB;
+  require('winston-mongodb');
 
   winston.add(winston.transports.MongoDB, options);
 ```
