@@ -33,11 +33,13 @@
     "logger"
   ],
   "dependencies": {
-    "@types/winston": "^2.3.2",
-    "mongodb": "^2.2.19"
+    "cycle": "1.0.3",
+    "mongodb": "^2.2.19",
+    "triple-beam": "1.1.0",
+    "winston": "3.0.0-rc1",
+    "winston-transport": "3.0.1"
   },
   "devDependencies": {
-    "winston": ">=1.1.1 <3.0.0",
     "vows": "~0.8.1"
   },
   "engines": {
