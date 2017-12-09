@@ -7,6 +7,7 @@
 'use strict';
 const vows = require('vows');
 const assert = require('assert');
+const ObjectID = require('mongodb').ObjectID;
 const helpers = require('../lib/helpers');
 
 class CustomError extends Error {
@@ -19,7 +20,8 @@ class CustomError extends Error {
 const originalData = {
   customDate: new Date(),
   standardError: new Error('some error'),
-  customError: new CustomError()
+  customError: new CustomError(),
+  objectId: new ObjectID(123456789012123456789012)
 };
 
 vows.describe('winston-mongodb-helpers').addBatch({
@@ -28,6 +30,10 @@ vows.describe('winston-mongodb-helpers').addBatch({
     'should preserve Date instances': function(preparedData) {
       assert.isTrue(preparedData.customDate instanceof Date);
       assert.equal(+preparedData.customDate, +originalData.customDate);
+    },
+    'should stringify ObjectID instances': function(preparedData) {
+      assert.isTrue(typeof(preparedData.objectId) === 'string');
+      assert.equal(preparedData.objectId, new ObjectID(originalData.objectId));
     },
     'should store Error objects': function(preparedData) {
       assert.isTrue(preparedData.standardError instanceof Object);
