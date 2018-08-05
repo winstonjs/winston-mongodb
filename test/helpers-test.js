@@ -26,22 +26,22 @@ describe('winston-mongodb-helpers', function() {
     let preparedData = helpers.prepareMetaData(originalData);
     it('should preserve Date instances', function() {
       assert(preparedData.customDate instanceof Date);
-      assert.equal(+preparedData.customDate, +originalData.customDate);
+      assert.strictEqual(+preparedData.customDate, +originalData.customDate);
     });
     it('should store Error objects', function() {
       assert(preparedData.standardError instanceof Object);
       assert(!(preparedData.standardError instanceof Error));
-      assert.equal(preparedData.standardError.message, originalData.standardError.message);
-      assert.equal(preparedData.standardError.name, originalData.standardError.name);
-      assert.equal(preparedData.standardError.stack, originalData.standardError.stack);
+      assert.strictEqual(preparedData.standardError.message, originalData.standardError.message);
+      assert.strictEqual(preparedData.standardError.name, originalData.standardError.name);
+      assert.strictEqual(preparedData.standardError.stack, originalData.standardError.stack);
     });
     it('should store extra fields for custom Error objects', function() {
       assert(preparedData.customError instanceof Object);
       assert(!(preparedData.customError instanceof Error));
-      assert.equal(preparedData.customError.message, originalData.customError.message);
-      assert.equal(preparedData.customError.name, originalData.customError.name);
-      assert.equal(preparedData.customError.stack, originalData.customError.stack);
-      assert.equal(preparedData.customError.testField, originalData.customError.testField);
+      assert.strictEqual(preparedData.customError.message, originalData.customError.message);
+      assert.strictEqual(preparedData.customError.name, originalData.customError.name);
+      assert.strictEqual(preparedData.customError.stack, originalData.customError.stack);
+      assert.strictEqual(preparedData.customError.testField, originalData.customError.testField);
     });
   });
 });
