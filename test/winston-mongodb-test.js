@@ -6,29 +6,21 @@
  * @author 0@39.yt (Yurij Mikhalevich)
  */
 'use strict';
-const vows = require('vows');
 const mongodb = require('mongodb');
-const transport = require('winston/test/transports/transport');
-const MongoDB = require('../lib/winston-mongodb').MongoDB;
-const dbUrl = process.env.USER_WINSTON_MONGODB_URL
-    ||process.env.WINSTON_MONGODB_URL||'mongodb://localhost/winston';
+const mongoose = require('mongoose');
+const test_suite = require('abstract-winston-transport');
 
-vows.describe('winston-mongodb').addBatch({
-  '{db: url}': transport(MongoDB, {db: dbUrl}),
-}).addBatch({'{db: url} on capped collection': transport(MongoDB,
-    {db: dbUrl, capped: true, collection: 'cappedLog'}),
-}).addBatch({
-  '{db: promise}': transport(MongoDB, {db: mongodb.MongoClient.connect(dbUrl)})
-}).addBatch({
-  '{db: preconnected}': {
-    topic: function(){
-      mongodb.MongoClient.connect(dbUrl, this.callback);
-    },
-    prepare: function(db){
-      Object.assign(this.context.tests.test, transport(MongoDB, {db}));
-    },
-    test: {
-      dummy: ()=>{}, // hack to be able to execute asynchronously added tests
-    },
-  }
-}).export(module);
+const MongoDB = require('../lib/winston-mongodb').MongoDB;
+
+const dbUrl = process.env.USER_WINSTON_MONGODB_URL
+    ||process.env.WINSTON_MONGODB_URL||'mongodb://localhost:27017/winston';
+
+mongoose.connect(dbUrl);
+
+test_suite({name: '{db: url}', Transport: MongoDB, construct: {db: dbUrl}});
+test_suite({name: '{db: url} on capped collection', Transport: MongoDB,
+    construct: {db: dbUrl, capped: true, collection: 'cappedLog'}});
+test_suite({name: '{db: client promise}', Transport: MongoDB,
+    construct: {db: mongodb.MongoClient.connect(dbUrl, {useNewUrlParser: true})}});
+test_suite({name: '{db: mongoose client}', Transport: MongoDB,
+    construct: {db: mongoose.connection}});
