@@ -55,6 +55,8 @@ new log collection as capped, defaults to false.
 initialization. Works only if __db__ is a string. Defaults to false.
 * __decolorize:__ Will remove color attributes from the log entry message,
 defaults to false.
+* __metaKey:__ Configure which key is used to store metadata in the logged info object.
+Defaults to `'metadata'` to remain compatible with the [metadata format](https://github.com/winstonjs/logform/blob/master/examples/metadata.js)
 * __expireAfterSeconds:__ Seconds before the entry is removed. Works only if __capped__ is not set.
 
 *Metadata:* Logged as a native JSON object in 'meta' property.
