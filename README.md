@@ -35,8 +35,8 @@ The MongoDB transport takes the following options. 'db' is required:
 'info'.
 * __silent:__ Boolean flag indicating whether to suppress output, defaults to
 false.
-* __db:__ MongoDB connection uri, pre-connected db object or promise object
-which will be resolved with pre-connected db object.
+* __db:__ MongoDB connection uri, pre-connected `MongoClient` object or promise
+which resolves to a pre-connected `MongoClient` object.
 * __options:__ MongoDB connection parameters (optional, defaults to
 `{poolSize: 2, autoReconnect: true}`).
 * __collection__: The name of the collection you want to store log messages in,
