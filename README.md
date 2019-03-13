@@ -38,7 +38,7 @@ false.
 * __db:__ MongoDB connection uri, pre-connected `MongoClient` object or promise
 which resolves to a pre-connected `MongoClient` object.
 * __options:__ MongoDB connection parameters (optional, defaults to
-`{poolSize: 2, autoReconnect: true}`).
+`{poolSize: 2, autoReconnect: true, useNewUrlParser: true}`).
 * __collection__: The name of the collection you want to store log messages in,
 defaults to 'log'.
 * __storeHost:__ Boolean indicating if you want to store machine hostname in
