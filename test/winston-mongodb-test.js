@@ -17,6 +17,15 @@ const dbUrl = process.env.USER_WINSTON_MONGODB_URL
 
 mongoose.connect(dbUrl);
 
+describe('winston-mongodb-manual-tests', function() {
+  describe('winston-mongodb', function() {
+    let transport = new MongoDB({db: dbUrl});
+    it('should be closeable', function() {
+      transport.close();
+    });
+  });
+});
+
 test_suite({name: '{db: url}', Transport: MongoDB, construct: {db: dbUrl}});
 test_suite({name: '{db: url} on capped collection', Transport: MongoDB,
     construct: {db: dbUrl, capped: true, collection: 'cappedLog'}});
