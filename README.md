@@ -26,7 +26,7 @@ and a File is overkill.
    */
   require('winston-mongodb');
 
-  winston.add(winston.transports.MongoDB, options);
+  winston.add(new winston.transports.MongoDB(options));
 ```
 
 The MongoDB transport takes the following options. 'db' is required:
