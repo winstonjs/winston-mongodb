@@ -126,6 +126,20 @@ declare module 'winston-mongodb' {
         */
        decolorize?: boolean;
        /**
+        *  Will leave MongoClient connected after transport shut down.
+        *
+        * @type {boolean}
+        * @memberof MongoDBConnectionOptions
+        */
+       leaveConnectionOpen?: boolean;
+       /**
+        * Configure which key is used to store metadata in the logged info object. Defaults to 'metadata' to remain compatible with the metadata format.
+        *
+        * @type {string}
+        * @memberof MongoDBConnectionOptions
+        */
+       metaKey?: string;
+       /**
         * Seconds before the entry is removed. Works only if capped is not set.
         *
         * @type {number}
