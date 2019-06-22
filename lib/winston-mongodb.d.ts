@@ -147,4 +147,6 @@ declare module 'winston-mongodb' {
         */
        expireAfterSeconds?: number;
     }
+    
+    const MongoDB: MongoDBTransportInstance;
 }
