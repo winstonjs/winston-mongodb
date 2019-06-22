@@ -19,7 +19,7 @@ declare module 'winston' {
 
 declare module 'winston-mongodb' {
     export interface MongoDBTransportInstance extends transports.StreamTransportInstance {
-        new (options: MongoDBConnectionOptions) : MongoDBTransportInstance;
+        new (options?: MongoDBConnectionOptions) : MongoDBTransportInstance;
         query: (callback: Function, options?: any) => Promise<any>;
     }
 
