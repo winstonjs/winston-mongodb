@@ -58,6 +58,8 @@ defaults to false.
 * __metaKey:__ Configure which key is used to store metadata in the logged info object.
 Defaults to `'metadata'` to remain compatible with the [metadata format](https://github.com/winstonjs/logform/blob/master/examples/metadata.js)
 * __expireAfterSeconds:__ Seconds before the entry is removed. Works only if __capped__ is not set.
+* __skipCollectionCreation__ Will disable the collection creation at startup.
+* __transformDocument__ A function that takes the default log document and transform it to another document.
 
 *Metadata:* Logged as a native JSON object in 'meta' property.
 
@@ -82,6 +84,6 @@ settled by mongodb, defaults to `false`.
 ## [Changelog](https://github.com/winstonjs/winston-mongodb/releases)
 
 #### Author: [Charlie Robbins](http://blog.nodejitsu.com)
-#### Contributors: [Yurij Mikhalevich](https://github.com/yurijmikhalevich), [Kendrick Taylor](https://github.com/sktaylor), [Yosef Dinerstein](https://github.com/yosefd), [Steve Dalby](https://github.com/stevedalby)
+#### Contributors: [Yurij Mikhalevich](https://github.com/yurijmikhalevich), [Kendrick Taylor](https://github.com/sktaylor), [Yosef Dinerstein](https://github.com/yosefd), [Steve Dalby](https://github.com/stevedalby), [Daniel Schäfer](https://github.com/epegzz)
 
 [0]: https://github.com/winstonjs/winston
