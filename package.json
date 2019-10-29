@@ -1,7 +1,7 @@
 {
   "name": "winston-mongodb",
   "license": "MIT",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "description": "A MongoDB transport for winston",
   "author": "Charlie Robbins <charlie.robbins@gmail.com>",
   "contributors": [
@@ -33,7 +33,7 @@
     "logger"
   ],
   "dependencies": {
-    "mongodb": "^3.1.13",
+    "mongodb": "^3.3.3",
     "winston-transport": "^4.3.0"
   },
   "peerDependencies": {
@@ -42,7 +42,7 @@
   "devDependencies": {
     "abstract-winston-transport": "~0.5.1",
     "mocha": "^5.2.0",
-    "mongoose": "^5.4.19",
+    "mongoose": "^5.7.7",
     "winston": "^3.2.1"
   },
   "engines": {
