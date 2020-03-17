@@ -1,10 +1,10 @@
 # winston
-[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/indexzero/winston-mongodb?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 A MongoDB transport for [winston][0].
 
-Current version supports only mongodb driver version 2.x. If you want to use
-winston-mongodb with mongodb version 1.4.x use winston-mongodb <1.x.
+Current version supports only mongodb driver version 3.x and winston 3.x. If you want to use
+winston-mongodb with mongodb version 1.4.x use winston-mongodb <1.x. For mongodb 2.x use
+winston-mongodb <3.x.
 
 ## Motivation
 `tldr;?`: To break the [winston][0] codebase into small modules that work
@@ -23,9 +23,9 @@ and a File is overkill.
    * Requiring `winston-mongodb` will expose
    * `winston.transports.MongoDB`
    */
-  require('winston-mongodb').MongoDB;
+  require('winston-mongodb');
 
-  winston.add(winston.transports.MongoDB, options);
+  winston.add(new winston.transports.MongoDB(options));
 ```
 
 The MongoDB transport takes the following options. 'db' is required:
@@ -34,18 +34,15 @@ The MongoDB transport takes the following options. 'db' is required:
 'info'.
 * __silent:__ Boolean flag indicating whether to suppress output, defaults to
 false.
-* __db:__ MongoDB connection uri, pre-connected db object or promise object
-which will be resolved with pre-connected db object.
+* __db:__ MongoDB connection uri, pre-connected `MongoClient` object or promise
+which resolves to a pre-connected `MongoClient` object.
 * __options:__ MongoDB connection parameters (optional, defaults to
-`{poolSize: 2, autoReconnect: true}`).
+`{poolSize: 2, autoReconnect: true, useNewUrlParser: true}`).
 * __collection__: The name of the collection you want to store log messages in,
 defaults to 'log'.
 * __storeHost:__ Boolean indicating if you want to store machine hostname in
 logs entry, if set to true it populates MongoDB entry with 'hostname' field,
 which stores os.hostname() value.
-* __username:__ The username to use when logging into MongoDB.
-* __password:__ The password to use when logging into MongoDB. If you don't
-supply a username and password it will not use MongoDB authentication.
 * __label:__ Label stored with entry object if defined.
 * __name:__ Transport instance identifier. Useful if you need to create multiple
 MongoDB transports.
@@ -57,6 +54,9 @@ new log collection as capped, defaults to false.
 initialization. Works only if __db__ is a string. Defaults to false.
 * __decolorize:__ Will remove color attributes from the log entry message,
 defaults to false.
+* __leaveConnectionOpen:__ Will leave MongoClient connected after transport shut down.
+* __metaKey:__ Configure which key is used to store metadata in the logged info object.
+Defaults to `'metadata'` to remain compatible with the [metadata format](https://github.com/winstonjs/logform/blob/master/examples/metadata.js)
 * __expireAfterSeconds:__ Seconds before the entry is removed. Works only if __capped__ is not set.
 
 *Metadata:* Logged as a native JSON object in 'meta' property.
@@ -82,6 +82,6 @@ settled by mongodb, defaults to `false`.
 ## [Changelog](https://github.com/winstonjs/winston-mongodb/releases)
 
 #### Author: [Charlie Robbins](http://blog.nodejitsu.com)
-#### Contributors: [Yurij Mikhalevich](https://github.com/39dotyt), [Kendrick Taylor](https://github.com/sktaylor), [Yosef Dinerstein](https://github.com/yosefd), [Steve Dalby](https://github.com/stevedalby)
+#### Contributors: [Yurij Mikhalevich](https://github.com/yurijmikhalevich), [Kendrick Taylor](https://github.com/sktaylor), [Yosef Dinerstein](https://github.com/yosefd), [Steve Dalby](https://github.com/stevedalby)
 
-[0]: https://github.com/flatiron/winston
+[0]: https://github.com/winstonjs/winston
