@@ -152,7 +152,7 @@ declare module 'winston-mongodb' {
         * @type {function}
         * @memberof MongoDBConnectionOptions
         */
-       trasformDocument?: function;
+       trasformDocument?: Function;
         /**
         * Will disable the collection creation at startup.
         *
