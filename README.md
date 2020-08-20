@@ -1,5 +1,4 @@
 # winston
-[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/indexzero/winston-mongodb?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 A MongoDB transport for [winston][0].
 
@@ -26,7 +25,7 @@ and a File is overkill.
    */
   require('winston-mongodb');
 
-  winston.add(winston.transports.MongoDB, options);
+  winston.add(new winston.transports.MongoDB(options));
 ```
 
 The MongoDB transport takes the following options. 'db' is required:
@@ -35,10 +34,10 @@ The MongoDB transport takes the following options. 'db' is required:
 'info'.
 * __silent:__ Boolean flag indicating whether to suppress output, defaults to
 false.
-* __db:__ MongoDB connection uri, pre-connected db object or promise object
-which will be resolved with pre-connected db object.
+* __db:__ MongoDB connection uri, pre-connected `MongoClient` object or promise
+which resolves to a pre-connected `MongoClient` object.
 * __options:__ MongoDB connection parameters (optional, defaults to
-`{poolSize: 2, autoReconnect: true}`).
+`{poolSize: 2, autoReconnect: true, useNewUrlParser: true}`).
 * __collection__: The name of the collection you want to store log messages in,
 defaults to 'log'.
 * __storeHost:__ Boolean indicating if you want to store machine hostname in
@@ -55,6 +54,9 @@ new log collection as capped, defaults to false.
 initialization. Works only if __db__ is a string. Defaults to false.
 * __decolorize:__ Will remove color attributes from the log entry message,
 defaults to false.
+* __leaveConnectionOpen:__ Will leave MongoClient connected after transport shut down.
+* __metaKey:__ Configure which key is used to store metadata in the logged info object.
+Defaults to `'metadata'` to remain compatible with the [metadata format](https://github.com/winstonjs/logform/blob/master/examples/metadata.js)
 * __expireAfterSeconds:__ Seconds before the entry is removed. Works only if __capped__ is not set.
 
 *Metadata:* Logged as a native JSON object in 'meta' property.

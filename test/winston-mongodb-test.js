@@ -15,7 +15,16 @@ const MongoDB = require('../lib/winston-mongodb').MongoDB;
 const dbUrl = process.env.USER_WINSTON_MONGODB_URL
     ||process.env.WINSTON_MONGODB_URL||'mongodb://localhost:27017/winston';
 
-mongoose.connect(dbUrl);
+mongoose.connect(dbUrl, {useNewUrlParser: true});
+
+describe('winston-mongodb-manual-tests', function() {
+  describe('winston-mongodb', function() {
+    let transport = new MongoDB({db: dbUrl});
+    it('should be closeable', function() {
+      transport.close();
+    });
+  });
+});
 
 test_suite({name: '{db: url}', Transport: MongoDB, construct: {db: dbUrl}});
 test_suite({name: '{db: url} on capped collection', Transport: MongoDB,
