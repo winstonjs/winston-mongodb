@@ -1,5 +1,5 @@
 {
-  "name": "@cmdap/winston-mongodb",
+  "name": "winston-mongodb",
   "license": "MIT",
   "version": "5.0.2",
   "description": "A MongoDB transport for winston",
