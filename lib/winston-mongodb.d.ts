@@ -10,7 +10,7 @@ import { MongoDBTransportInstance, MongoDBConnectionOptions } from 'winston-mong
  * Extending transport
  */
 declare module 'winston/lib/winston/transports' {
-    interface Transports {
+    export interface Transports {
         MongoDB: MongoDBTransportInstance;
         MongoDBTransportOptions: MongoDBConnectionOptions;
     }
