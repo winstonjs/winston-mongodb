@@ -141,7 +141,14 @@ declare module 'winston-mongodb' {
         * @memberof MongoDBConnectionOptions
         */
        expireAfterSeconds?: number;
+       /**
+        * Optional condition for the entry to be removed. Works only if capped is not set and expireAfterSeconds is set.
+        *
+        * @type {*}
+        * @memberof MongoDBConnectionOptions
+        */
+       partialFilterExpression?: any;
     }
-    
+
     const MongoDB: MongoDBTransportInstance;
 }
