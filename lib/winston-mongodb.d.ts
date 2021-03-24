@@ -28,7 +28,7 @@ declare module 'winston-mongodb' {
      * @export
      * @interface MongoDBConnectionOptions
      */
-    export interface MongoDBConnectionOptions {
+    export interface MongoDBConnectionOptions extends transports.StreamTransportOptions {
        /**
         * Level of messages that this transport should log, defaults to 'info'.
         *
