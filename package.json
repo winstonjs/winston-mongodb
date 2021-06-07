@@ -34,7 +34,7 @@
   ],
   "dependencies": {
     "mongodb": "^3.6.9",
-    "winston-transport": "^4.3.0"
+    "winston-transport": "^4.4.0"
   },
   "peerDependencies": {
     "winston": "^3.0.0"
