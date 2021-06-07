@@ -4,27 +4,22 @@
 // Balazs Mocsai <https://github.com/mbale>
 
 import { transports } from "winston";
-import { WinstonMongoDBTransports } from 'winston-mongodb';
+import { MongoDBTransportInstance, MongoDBConnectionOptions } from 'winston-mongodb';
 
-declare module 'winston' {
-    /**
-     * Extending transport
-     *
-     * @export
-     * @interface Transports
-     * @extends {WinstonMongoDBTransports}
-     */
-    export interface Transports extends WinstonMongoDBTransports {}
+/**
+ * Extending transport
+ */
+declare module 'winston/lib/winston/transports' {
+    export interface Transports {
+        MongoDB: MongoDBTransportInstance;
+        MongoDBTransportOptions: MongoDBConnectionOptions;
+    }
 }
 
 declare module 'winston-mongodb' {
     export interface MongoDBTransportInstance extends transports.StreamTransportInstance {
         new (options?: MongoDBConnectionOptions) : MongoDBTransportInstance;
         query: (callback: Function, options?: any) => Promise<any>;
-    }
-
-    export interface WinstonMongoDBTransports {
-        MongoDB: MongoDBTransportInstance;
     }
 
     /**
