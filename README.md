@@ -36,6 +36,8 @@ The MongoDB transport takes the following options. 'db' is required:
 false.
 * __db:__ MongoDB connection uri, pre-connected `MongoClient` object or promise
 which resolves to a pre-connected `MongoClient` object.
+* __dbName:__ The database name to connect to, defaults to DB name based on 
+connection URI if not provided, ignored if using a pre-connected mongoose connection.
 * __options:__ MongoDB connection parameters (optional, defaults to
 `{poolSize: 2, autoReconnect: true, useNewUrlParser: true}`).
 * __collection__: The name of the collection you want to store log messages in,
