@@ -57,7 +57,14 @@ declare module 'winston-mongodb' {
         * @memberof MongoDBConnectionOptions
         */
        options?: any;
-       /**
+      /**
+       * The database name to connect to, defaults to DB name based on connection URI if not provided, ignored if using a pre-connected mongoose connection.
+       *
+       * @type {string}
+       * @memberof MongoDBConnectionOptions
+       */
+      dbName?: string;
+      /**
         * The name of the collection you want to store log messages in, defaults to 'log'.
         *
         * @type {string}
