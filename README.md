@@ -60,6 +60,7 @@ defaults to false.
 * __metaKey:__ Configure which key is used to store metadata in the logged info object.
 Defaults to `'metadata'` to remain compatible with the [metadata format](https://github.com/winstonjs/logform/blob/master/examples/metadata.js)
 * __expireAfterSeconds:__ Seconds before the entry is removed. Works only if __capped__ is not set.
+* __partialFilterExpression:__ Optional condition for the entry to be removed. Works only if __capped__ is not set and __expireAfterSeconds__ is set.
 
 *Metadata:* Logged as a native JSON object in 'meta' property.
 
