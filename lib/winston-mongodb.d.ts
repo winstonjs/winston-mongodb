@@ -3,7 +3,7 @@
 // Definitions by: miton18 <https://github.com/miton18>, blove <https://github.com/blove>,
 // Balazs Mocsai <https://github.com/mbale>
 
-import { transports } from "winston";
+import { Logform, transports } from "winston";
 import { MongoDBTransportInstance, MongoDBConnectionOptions } from 'winston-mongodb';
 
 /**
@@ -148,6 +148,8 @@ declare module 'winston-mongodb' {
         * @memberof MongoDBConnectionOptions
         */
        expireAfterSeconds?: number;
+
+       format?: Logform.Format;
     }
     
     const MongoDB: MongoDBTransportInstance;
