@@ -1,10 +1,10 @@
-# winston
+# winston-mongodb
 
 A MongoDB transport for [winston][0].
 
-Current version supports only mongodb driver version 3.x and winston 3.x. If you want to use
-winston-mongodb with mongodb version 1.4.x use winston-mongodb <1.x. For mongodb 2.x use
-winston-mongodb <3.x.
+Current version supports only mongodb driver version 3.x and newer and winston 3.x and newer.
+If you want to use winston-mongodb with mongodb version 1.4.x use winston-mongodb <1.x. 
+For mongodb 2.x use winston-mongodb <3.x.
 
 ## Motivation
 `tldr;?`: To break the [winston][0] codebase into small modules that work
@@ -17,51 +17,61 @@ and a File is overkill.
 
 ## Usage
 ``` js
-  var winston = require('winston');
+const winston = require('winston');
+// Requiring `winston-mongodb` will expose winston.transports.MongoDB`
+require('winston-mongodb');
 
-  /**
-   * Requiring `winston-mongodb` will expose
-   * `winston.transports.MongoDB`
-   */
-  require('winston-mongodb');
+const log = winston.createLogger({
+  level: 'info',
+  transports: [
+    // write errors to console too
+    new winston.transports.Console({format: winston.format.simple(), level:'error'})
+  ],
+});
 
-  winston.add(new winston.transports.MongoDB(options));
+// logging to console so far
+log.info('Connecting to database...');
+
+const MongoClient = require('mongodb').MongoClient;
+const url = "mongodb://localhost:27017/mydb";
+
+const client = new MongoClient(url);
+await client.connect();
+
+const transportOptions = {
+  db: await Promise.resolve(client),
+  collection: 'log'
+};
+
+log.add(new winston.transports.MongoDB(transportOptions));
+
+// following entry should appear in log collection and will contain
+// metadata JSON-property containing url field
+log.info('Connected to database.',{url});
+
 ```
 
-The MongoDB transport takes the following options. 'db' is required:
+The MongoDB transport takes the following options. Only option `db` is required:
 
-* __level:__ Level of messages that this transport should log, defaults to
-'info'.
-* __silent:__ Boolean flag indicating whether to suppress output, defaults to
-false.
-* __db:__ MongoDB connection uri, pre-connected `MongoClient` object or promise
-which resolves to a pre-connected `MongoClient` object.
-* __dbName:__ The database name to connect to, defaults to DB name based on 
-connection URI if not provided, ignored if using a pre-connected mongoose connection.
-* __options:__ MongoDB connection parameters (optional, defaults to
-`{poolSize: 2, autoReconnect: true, useNewUrlParser: true}`).
-* __collection__: The name of the collection you want to store log messages in,
-defaults to 'log'.
-* __storeHost:__ Boolean indicating if you want to store machine hostname in
-logs entry, if set to true it populates MongoDB entry with 'hostname' field,
-which stores os.hostname() value.
-* __label:__ Label stored with entry object if defined.
-* __name:__ Transport instance identifier. Useful if you need to create multiple
-MongoDB transports.
-* __capped:__ In case this property is true, winston-mongodb will try to create
-new log collection as capped, defaults to false.
-* __cappedSize:__ Size of logs capped collection in bytes, defaults to 10000000.
-* __cappedMax:__ Size of logs capped collection in number of documents.
-* __tryReconnect:__ Will try to reconnect to the database in case of fail during
-initialization. Works only if __db__ is a string. Defaults to false.
-* __decolorize:__ Will remove color attributes from the log entry message,
-defaults to false.
-* __leaveConnectionOpen:__ Will leave MongoClient connected after transport shut down.
-* __metaKey:__ Configure which key is used to store metadata in the logged info object.
-Defaults to `'metadata'` to remain compatible with the [metadata format](https://github.com/winstonjs/logform/blob/master/examples/metadata.js)
-* __expireAfterSeconds:__ Seconds before the entry is removed. Works only if __capped__ is not set.
-
-*Metadata:* Logged as a native JSON object in 'meta' property.
+| Option |  Description                                     |
+| ------ | :----------------------------------------------- |
+| db     | **REQUIRED**. MongoDB connection uri, pre-connected `MongoClient` object or promise which resolves to a pre-connected `MongoClient` object. |
+| dbname | The database name to connect to, defaults to DB name based on connection URI if not provided, ignored if using a pre-connected connection. |
+| options| MongoDB connection parameters.<br/>Defaults to `{poolSize: 2, autoReconnect: true, useNewUrlParser: true}`). |
+| collection | The name of the collection you want to store log messages in.<br/>Defaults to `log`. |
+| level  | Level of messages that this transport should log.<br/>Defaults to `info`. |
+| silent | Boolean flag indicating whether to suppress output.<br/>Defaults to `false`. |
+| storeHost | Boolean indicating if you want to store machine hostname in logs entry, if set to true it populates MongoDB entry with 'hostname' field, which stores os.hostname() value. |
+| label  | If set to true, then label attribute content will be stored in `label` field, if detected in meta-data. |
+| name | Transport instance identifier. Useful if you need to create multiple MongoDB transports. |
+| capped | In case this property is true, winston-mongodb will try to create new log collection as capped.<br/>Defaults to `false`. |
+| cappedSize | Size of logs capped collection in bytes.<br/>Defaults to 10,000,000. |
+| cappedMax | Size of logs capped collection in number of documents. |
+| tryReconnect | Will try to reconnect to the database in case of fail during initialization. Works only if __db__ is a string.<br/>Defaults to `false`. |
+| decolorize | Will remove color attributes from the log entry message.<br/>Defaults to `false`. |
+| leaveConnectionOpen| Will leave MongoClient connected after transport shuts down. |
+| metaKey | Configure name of the field which is used to store metadata in the logged info object.<br/>Defaults to `metadata` to remain compatible with the [metadata format](https://github.com/winstonjs/logform/blob/master/examples/metadata.js) |
+| expireAfterSeconds |Seconds before the entry is removed. Works only if __capped__ is not set. |
 
 *Logging unhandled exceptions:* For logging unhandled exceptions specify
 winston-mongodb as `handleExceptions` logger according to winston documentation.
