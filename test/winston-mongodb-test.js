@@ -6,6 +6,7 @@
  * @author 0@39.yt (Yurij Mikhalevich)
  */
 'use strict';
+require('dotenv').config();
 const mongodb = require('mongodb');
 const mongoose = require('mongoose');
 const test_suite = require('abstract-winston-transport');
