@@ -15,20 +15,21 @@ class CustomError extends Error {
   }
 }
 
-const originalData = {
-  customDate: new Date(),
-  standardError: new Error('some error'),
-  customError: new CustomError()
-};
-
 describe('winston-mongodb-helpers', function() {
   describe('#prepareMetaData()', function() {
-    let preparedData = helpers.prepareMetaData(originalData);
     it('should preserve Date instances', function() {
+      const originalData = { customDate: new Date() };
+
+      const preparedData = helpers.prepareMetaData(originalData);
+
       assert(preparedData.customDate instanceof Date);
       assert.strictEqual(+preparedData.customDate, +originalData.customDate);
     });
     it('should store Error objects', function() {
+      const originalData = { standardError: new Error('some error') };
+
+      const preparedData = helpers.prepareMetaData(originalData);
+
       assert(preparedData.standardError instanceof Object);
       assert(!(preparedData.standardError instanceof Error));
       assert.strictEqual(preparedData.standardError.message, originalData.standardError.message);
@@ -36,6 +37,10 @@ describe('winston-mongodb-helpers', function() {
       assert.strictEqual(preparedData.standardError.stack, originalData.standardError.stack);
     });
     it('should store extra fields for custom Error objects', function() {
+      const originalData = { customError: new CustomError() };
+      
+      const preparedData = helpers.prepareMetaData(originalData);
+
       assert(preparedData.customError instanceof Object);
       assert(!(preparedData.customError instanceof Error));
       assert.strictEqual(preparedData.customError.message, originalData.customError.message);
