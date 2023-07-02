@@ -6,6 +6,7 @@
  */
 'use strict';
 const assert = require('assert');
+const ObjectID = require('mongodb').ObjectID;
 const helpers = require('../lib/helpers');
 
 class CustomError extends Error {
@@ -47,6 +48,81 @@ describe('winston-mongodb-helpers', function() {
       assert.strictEqual(preparedData.customError.name, originalData.customError.name);
       assert.strictEqual(preparedData.customError.stack, originalData.customError.stack);
       assert.strictEqual(preparedData.customError.testField, originalData.customError.testField);
+    });
+    it('should preserve ObjectIds', function() {
+      const originalData = { objectId: new ObjectID() };
+      
+      const preparedData = helpers.prepareMetaData(originalData);
+
+      assert.strictEqual(preparedData.objectId, originalData.objectId);
+    });
+    it('should preserve Buffers', function() {
+      const originalData = { buffer: new Buffer.from('test') };
+      
+      const preparedData = helpers.prepareMetaData(originalData);
+
+      assert.strictEqual(preparedData.buffer, originalData.buffer);
+    });
+    it('should handle objects containing all kinds of values, including arrays, nested objects and functions', function() {
+      const originalData = {
+        undefinedValue: undefined,
+        nullValue: null,
+        booleanValue: true,
+        numberValue: 1,
+        bigIntValue: BigInt(9007199254740991),
+        stringValue: 'test',
+        symbolValue: Symbol(),
+        arrayValue: ['this', 'is', 'an', 'array'],
+        nestedObjectValue: { objectKey: true },
+        functionValue: (a, b) => a + b
+      };
+
+      const preparedData = helpers.prepareMetaData(originalData);
+
+      const expected = { ...originalData, functionValue: {} }
+      assert.deepStrictEqual(preparedData, expected);
+    });
+    it('should handle arrays containing all kinds of values, including objects, nested arrays and functions', function() {
+      const originalData = [
+        undefined,
+        null,
+        true,
+        1,
+        BigInt(9007199254740991),
+        'test',
+        Symbol(),
+        { objectKey: true },
+        ['this', 'is', 'an', 'array'],
+        (a, b) => a + b
+      ];
+
+      const preparedData = helpers.prepareMetaData(originalData);
+
+      const expected = [...originalData];
+      expected[expected.length - 1] = {}; // function gets converted to empty object
+      assert.deepStrictEqual(preparedData, expected);
+    });
+    it('should replace dots and dollar signs in object keys', function() {
+      const originalData = { 'key.with.dots': true, '$test$': true };
+      
+      const preparedData = helpers.prepareMetaData(originalData);
+
+      const expected = { 'key[dot]with[dot]dots': true, '[$]test[$]': true };
+      assert.deepStrictEqual(preparedData, expected);
+    });
+    it('should break circular dependencies', function() {
+      const originalData = {};
+      originalData.nestedObjectValue = { nestedKey: originalData };
+      originalData.arrayValue = [originalData, 'test', { nestedKey: originalData }];
+
+      const preparedData = helpers.prepareMetaData(originalData);
+
+      const expected = {
+        nestedObjectValue: { nestedKey: '[Circular]' },
+        arrayValue: ['[Circular]', 'test', { nestedKey: '[Circular]' }]
+      };
+
+      assert.deepStrictEqual(preparedData, expected);
     });
   });
 });
