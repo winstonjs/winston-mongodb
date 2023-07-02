@@ -124,5 +124,23 @@ describe('winston-mongodb-helpers', function() {
 
       assert.deepStrictEqual(preparedData, expected);
     });
+    it('should handle objects with null prototype', function() {
+      const originalData = Object.create(null);
+      originalData['key.with.dots'] = true;
+      originalData['$test$'] = true;      
+      originalData.nestedObjectValue = { nestedKey: originalData };
+      originalData.arrayValue = [originalData, 'test', { nestedKey: originalData }];
+
+      const preparedData = helpers.prepareMetaData(originalData);
+
+      const expected = {
+        'key[dot]with[dot]dots': true,
+        '[$]test[$]': true,
+        nestedObjectValue: { nestedKey: '[Circular]' },
+        arrayValue: ['[Circular]', 'test', { nestedKey: '[Circular]' }]
+      };
+
+      assert.deepStrictEqual(preparedData, expected);
+    });
   });
 });
