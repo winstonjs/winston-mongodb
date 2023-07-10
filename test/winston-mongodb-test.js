@@ -9,7 +9,7 @@
 require('dotenv').config();
 const mongodb = require('mongodb');
 const mongoose = require('mongoose');
-const test_suite = require('abstract-winston-transport');
+const testSuite = require('abstract-winston-transport');
 
 const MongoDB = require('../lib/winston-mongodb').MongoDB;
 
@@ -29,19 +29,19 @@ describe('winston-mongodb-manual-tests', function () {
   });
 });
 
-test_suite({ name: '{db: url}', Transport: MongoDB, construct: { db: dbUrl }});
-test_suite({ name: '{db: url, dbName: string}', Transport: MongoDB,
+testSuite({ name: '{db: url}', Transport: MongoDB, construct: { db: dbUrl }});
+testSuite({ name: '{db: url, dbName: string}', Transport: MongoDB,
   construct: { db: dbUrl, dbName }});
-test_suite({ name: '{db: url} on capped collection', Transport: MongoDB,
+testSuite({ name: '{db: url} on capped collection', Transport: MongoDB,
   construct: { db: dbUrl, capped: true, collection: 'cappedLog' }});
-test_suite({ name: '{db: url, dbName: string} on capped collection', Transport: MongoDB,
+testSuite({ name: '{db: url, dbName: string} on capped collection', Transport: MongoDB,
   construct: { db: dbUrl, dbName, capped: true, collection: 'cappedLog' }});
-test_suite({ name: '{db: client promise}', Transport: MongoDB,
+testSuite({ name: '{db: client promise}', Transport: MongoDB,
   construct: { db: mongodb.MongoClient.connect(dbUrl, { useNewUrlParser: true }) }});
-test_suite({ name: '{db: client promise, dbName: string}', Transport: MongoDB,
+testSuite({ name: '{db: client promise, dbName: string}', Transport: MongoDB,
   construct: {
     dbName,
     db: mongodb.MongoClient.connect(dbUrl, { useNewUrlParser: true }) }
 });
-test_suite({ name: '{db: mongoose client}', Transport: MongoDB,
+testSuite({ name: '{db: mongoose client}', Transport: MongoDB,
   construct: { db: mongoose.connection }});
