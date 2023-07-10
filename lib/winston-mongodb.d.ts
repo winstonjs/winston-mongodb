@@ -46,7 +46,7 @@ declare module 'winston-mongodb' {
        /**
         * MongoDB connection uri, pre-connected db object or promise object which will be resolved with pre-connected db object.
         *
-        * @type {(string | Promise<any>)}
+        * @type {(string | Promise<object>)}
         * @memberof MongoDBConnectionOptions
         */
        db: string | Promise<any>;

@@ -42,6 +42,7 @@
   "devDependencies": {
     "abstract-winston-transport": "~0.5.1",
     "@dabh/eslint-config-populist": "^5.0.0",
+    "dotenv": "^16.1.4",
     "mocha": "^10.2.0",
     "mongoose": "^5.10.5",
     "winston": "^3.3.3"
