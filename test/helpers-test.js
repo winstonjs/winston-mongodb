@@ -16,9 +16,9 @@ class CustomError extends Error {
   }
 }
 
-describe('winston-mongodb-helpers', function() {
-  describe('#prepareMetaData()', function() {
-    it('should preserve Date instances', function() {
+describe('winston-mongodb-helpers', function () {
+  describe('#prepareMetaData()', function () {
+    it('should preserve Date instances', function () {
       const originalData = { customDate: new Date() };
 
       const preparedData = helpers.prepareMetaData(originalData);
@@ -26,7 +26,7 @@ describe('winston-mongodb-helpers', function() {
       assert(preparedData.customDate instanceof Date);
       assert.strictEqual(+preparedData.customDate, +originalData.customDate);
     });
-    it('should store Error objects', function() {
+    it('should store Error objects', function () {
       const originalData = { standardError: new Error('some error') };
 
       const preparedData = helpers.prepareMetaData(originalData);
@@ -37,9 +37,9 @@ describe('winston-mongodb-helpers', function() {
       assert.strictEqual(preparedData.standardError.name, originalData.standardError.name);
       assert.strictEqual(preparedData.standardError.stack, originalData.standardError.stack);
     });
-    it('should store extra fields for custom Error objects', function() {
+    it('should store extra fields for custom Error objects', function () {
       const originalData = { customError: new CustomError() };
-      
+
       const preparedData = helpers.prepareMetaData(originalData);
 
       assert(preparedData.customError instanceof Object);
@@ -49,21 +49,21 @@ describe('winston-mongodb-helpers', function() {
       assert.strictEqual(preparedData.customError.stack, originalData.customError.stack);
       assert.strictEqual(preparedData.customError.testField, originalData.customError.testField);
     });
-    it('should preserve ObjectIds', function() {
+    it('should preserve ObjectIds', function () {
       const originalData = { objectId: new ObjectID() };
-      
+
       const preparedData = helpers.prepareMetaData(originalData);
 
       assert.strictEqual(preparedData.objectId, originalData.objectId);
     });
-    it('should preserve Buffers', function() {
+    it('should preserve Buffers', function () {
       const originalData = { buffer: new Buffer.from('test') };
-      
+
       const preparedData = helpers.prepareMetaData(originalData);
 
       assert.strictEqual(preparedData.buffer, originalData.buffer);
     });
-    it('should handle objects containing all kinds of values, including arrays, nested objects and functions', function() {
+    it('should handle objects containing all kinds of values, including arrays, nested objects and functions', function () {
       const originalData = {
         undefinedValue: undefined,
         nullValue: null,
@@ -79,10 +79,10 @@ describe('winston-mongodb-helpers', function() {
 
       const preparedData = helpers.prepareMetaData(originalData);
 
-      const expected = { ...originalData, functionValue: {} }
+      const expected = { ...originalData, functionValue: {}};
       assert.deepStrictEqual(preparedData, expected);
     });
-    it('should handle arrays containing all kinds of values, including objects, nested arrays and functions', function() {
+    it('should handle arrays containing all kinds of values, including objects, nested arrays and functions', function () {
       const originalData = [
         undefined,
         null,
@@ -102,15 +102,15 @@ describe('winston-mongodb-helpers', function() {
       expected[expected.length - 1] = {}; // function gets converted to empty object
       assert.deepStrictEqual(preparedData, expected);
     });
-    it('should replace dots and dollar signs in object keys', function() {
+    it('should replace dots and dollar signs in object keys', function () {
       const originalData = { 'key.with.dots': true, '$test$': true };
-      
+
       const preparedData = helpers.prepareMetaData(originalData);
 
       const expected = { 'key[dot]with[dot]dots': true, '[$]test[$]': true };
       assert.deepStrictEqual(preparedData, expected);
     });
-    it('should break circular dependencies', function() {
+    it('should break circular dependencies', function () {
       const originalData = {};
       originalData.nestedObjectValue = { nestedKey: originalData };
       originalData.arrayValue = [originalData, 'test', { nestedKey: originalData }];
@@ -124,10 +124,10 @@ describe('winston-mongodb-helpers', function() {
 
       assert.deepStrictEqual(preparedData, expected);
     });
-    it('should handle objects with null prototype', function() {
+    it('should handle objects with null prototype', function () {
       const originalData = Object.create(null);
       originalData['key.with.dots'] = true;
-      originalData['$test$'] = true;      
+      originalData.$test$ = true;
       originalData.nestedObjectValue = { nestedKey: originalData };
       originalData.arrayValue = [originalData, 'test', { nestedKey: originalData }];
 
@@ -136,8 +136,8 @@ describe('winston-mongodb-helpers', function() {
       const expected = {
         'key[dot]with[dot]dots': true,
         '[$]test[$]': true,
-        nestedObjectValue: { nestedKey: '[Circular]' },
-        arrayValue: ['[Circular]', 'test', { nestedKey: '[Circular]' }]
+        'nestedObjectValue': { nestedKey: '[Circular]' },
+        'arrayValue': ['[Circular]', 'test', { nestedKey: '[Circular]' }]
       };
 
       assert.deepStrictEqual(preparedData, expected);
