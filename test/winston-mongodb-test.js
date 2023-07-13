@@ -22,6 +22,8 @@ const dbName = process.env.WINSTON_MONGODB_DBNAME
 let dbUrl;
 
 async function setUpDb() {
+  this.timeout(0);
+
   const customDbUrl = process.env.USER_WINSTON_MONGODB_URL
     || process.env.WINSTON_MONGODB_URL;
 
@@ -32,7 +34,9 @@ async function setUpDb() {
     dbUrl = inMemoryMongo.getUri('winston');
   }
 
-  mongoose.connect(dbUrl, { useNewUrlParser: true });
+  await mongoose.connect(dbUrl, { useNewUrlParser: true });
+  const serverInfo = await mongoose.connection.db.admin().serverInfo();
+  console.log(`Testing against MongDB version ${serverInfo.version} at URL ${dbUrl}`);
 }
 
 before(setUpDb);
