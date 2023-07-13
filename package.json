@@ -45,7 +45,7 @@
     "dotenv": "^16.1.4",
     "mocha": "^10.2.0",
     "mongodb-memory-server": "^8.13.0",
-    "mongoose": "^5.10.5",
+    "mongoose": "^7.3.4",
     "winston": "^3.3.3"
   },
   "engines": {
