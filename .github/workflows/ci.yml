@@ -19,14 +19,23 @@ jobs:
           - 16
           - 18
           - 20
+        mongo:
+          - v6.0-latest
+          - v5.0-latest
+          - v4.4-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
       - name: Install Dependencies
+        env:
+          MONGOMS_VERSION: ${{ matrix.mongo }}
+          MONGOMS_DISABLE_POSTINSTALL: 0
         run: npm clean-install
       - name: Lint
         run: npm run lint
       - name: Test
+        env:
+          MONGOMS_VERSION: ${{ matrix.mongo }}
         run: npm test

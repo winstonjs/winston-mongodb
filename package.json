@@ -40,10 +40,11 @@
     "winston": "^3.0.0"
   },
   "devDependencies": {
-    "abstract-winston-transport": "~0.5.1",
     "@dabh/eslint-config-populist": "^5.0.0",
+    "abstract-winston-transport": "~0.5.1",
     "dotenv": "^16.1.4",
     "mocha": "^10.2.0",
+    "mongodb-memory-server": "^8.13.0",
     "mongoose": "^5.10.5",
     "winston": "^3.3.3"
   },
@@ -53,8 +54,13 @@
   "main": "./lib/winston-mongodb",
   "scripts": {
     "lint": "eslint lib/*.js test/*.js --resolve-plugins-relative-to ./node_modules/@dabh/eslint-config-populist",
-    "test": "mocha test/*-test.js",
+    "test": "mocha test/*-test.js --exit",
     "test-rs": "WINSTON_MONGODB_URL='mongodb://localhost:27017,localhost:27018/winston?replicaSet=rs0' mocha test/*-test.js"
   },
-  "typings": "./lib/winston-mongodb.d.ts"
+  "typings": "./lib/winston-mongodb.d.ts",
+  "config": {
+    "mongodbMemoryServer": {
+      "disablePostinstall": "1"
+    }
+  }
 }

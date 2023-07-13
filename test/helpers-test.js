@@ -57,7 +57,7 @@ describe('winston-mongodb-helpers', function () {
       assert.strictEqual(preparedData.objectId, originalData.objectId);
     });
     it('should preserve Buffers', function () {
-      const originalData = { buffer: new Buffer.from('test') };
+      const originalData = { buffer: Buffer.from('test') };
 
       const preparedData = helpers.prepareMetaData(originalData);
 
