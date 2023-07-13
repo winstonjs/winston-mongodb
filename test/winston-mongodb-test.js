@@ -36,7 +36,7 @@ async function setUpDb() {
 
   await mongoose.connect(dbUrl, { useNewUrlParser: true });
   const serverInfo = await mongoose.connection.db.admin().serverInfo();
-  console.log(`Testing against MongDB version ${serverInfo.version} at URL ${dbUrl}`);
+  console.log(`Testing against MongoDB version ${serverInfo.version} at URL ${dbUrl}`);
 }
 
 before(setUpDb);
