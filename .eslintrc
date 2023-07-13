@@ -2,10 +2,13 @@
   "extends": "@dabh/eslint-config-populist",
   "rules": {
     "one-var": ["error", { "var": "never", "let": "never", "const": "never" }],
-    "strict": 0
+    "no-unused-vars": ["error", { "ignoreRestSiblings": true }],
+    "no-undefined": "off",
+    "no-console": "off",
+    "strict": "off"
   },
   "parserOptions": {
-    "ecmaVersion": 2022,
+    "ecmaVersion": 2022
   },
   "env": {
      "es2020": true
