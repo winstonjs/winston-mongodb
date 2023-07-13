@@ -57,5 +57,10 @@
     "test": "mocha test/*-test.js --exit",
     "test-rs": "WINSTON_MONGODB_URL='mongodb://localhost:27017,localhost:27018/winston?replicaSet=rs0' mocha test/*-test.js"
   },
-  "typings": "./lib/winston-mongodb.d.ts"
+  "typings": "./lib/winston-mongodb.d.ts",
+  "config": {
+    "mongodbMemoryServer": {
+      "disablePostinstall": "1"
+    }
+  }
 }
