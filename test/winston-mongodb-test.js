@@ -1,3 +1,5 @@
+/* eslint-disable no-process-env */
+
 /**
  * @module 'winston-mongodb-test'
  * @fileoverview Tests for instances of the MongoDB transport
