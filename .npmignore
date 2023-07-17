@@ -1,3 +1,4 @@
 .git*
 npm-debug.log
 .idea
+.eslintrc
