@@ -33,7 +33,7 @@
     "logger"
   ],
   "dependencies": {
-    "mongodb": "^3.6.2",
+    "mongodb": "^5.8.1",
     "winston-transport": "^4.4.0"
   },
   "peerDependencies": {
