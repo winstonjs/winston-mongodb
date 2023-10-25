@@ -33,7 +33,7 @@
     "logger"
   ],
   "dependencies": {
-    "mongodb": "^3.6.2",
+    "mongodb": "^5.9.1",
     "winston-transport": "^4.4.0"
   },
   "peerDependencies": {
@@ -45,11 +45,11 @@
     "dotenv": "^16.1.4",
     "mocha": "^10.2.0",
     "mongodb-memory-server": "^8.13.0",
-    "mongoose": "^7.3.4",
+    "mongoose": "^7.6.1",
     "winston": "^3.3.3"
   },
   "engines": {
-    "node": ">=6.8.1"
+    "node": ">=14.20.1"
   },
   "main": "./lib/winston-mongodb",
   "scripts": {
