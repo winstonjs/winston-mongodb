@@ -44,8 +44,8 @@
     "abstract-winston-transport": "~0.5.1",
     "dotenv": "^16.1.4",
     "mocha": "^10.2.0",
-    "mongodb-memory-server": "^8.13.0",
-    "mongoose": "^7.6.1",
+    "mongodb-memory-server": "^9.1.4",
+    "mongoose": "^8.0.0",
     "winston": "^3.3.3"
   },
   "engines": {
