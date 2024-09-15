@@ -6,7 +6,7 @@
  */
 'use strict';
 const assert = require('assert');
-const ObjectID = require('mongodb').ObjectID;
+const ObjectId = require('mongodb').ObjectId;
 const helpers = require('../lib/helpers');
 
 class CustomError extends Error {
@@ -50,7 +50,7 @@ describe('winston-mongodb-helpers', function () {
       assert.strictEqual(preparedData.customError.testField, originalData.customError.testField);
     });
     it('should preserve ObjectIds', function () {
-      const originalData = { objectId: new ObjectID() };
+      const originalData = { objectId: new ObjectId() };
 
       const preparedData = helpers.prepareMetaData(originalData);
 
