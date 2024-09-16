@@ -34,7 +34,7 @@ async function setUpDb() {
     dbUrl = inMemoryMongo.getUri('winston');
   }
 
-  await mongoose.connect(dbUrl, { useNewUrlParser: true });
+  await mongoose.connect(dbUrl);
   const serverInfo = await mongoose.connection.db.admin().serverInfo();
   console.log(`Testing against MongoDB version ${serverInfo.version} at URL ${dbUrl}`);
 }
@@ -60,11 +60,11 @@ function setUpDynamicallyGeneratedTests() {
   testSuite({ name: '{db: url, dbName: string} on capped collection', Transport: MongoDB,
     construct: { db: dbUrl, dbName, capped: true, collection: 'cappedLog' }});
   testSuite({ name: '{db: client promise}', Transport: MongoDB,
-    construct: { db: mongodb.MongoClient.connect(dbUrl, { useNewUrlParser: true }) }});
+    construct: { db: mongodb.MongoClient.connect(dbUrl) }});
   testSuite({ name: '{db: client promise, dbName: string}', Transport: MongoDB,
     construct: {
       dbName,
-      db: mongodb.MongoClient.connect(dbUrl, { useNewUrlParser: true }) }
+      db: mongodb.MongoClient.connect(dbUrl) }
   });
   testSuite({ name: '{db: mongoose client}', Transport: MongoDB,
     construct: { db: mongoose.connection }});

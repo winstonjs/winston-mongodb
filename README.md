@@ -57,7 +57,7 @@ The MongoDB transport takes the following options. Only option `db` is required:
 | ------ | :----------------------------------------------- |
 | db     | **REQUIRED**. MongoDB connection uri, pre-connected `MongoClient` object or promise which resolves to a pre-connected `MongoClient` object. |
 | dbname | The database name to connect to, defaults to DB name based on connection URI if not provided, ignored if using a pre-connected connection. |
-| options| MongoDB connection parameters.<br/>Defaults to `{poolSize: 2, autoReconnect: true, useNewUrlParser: true}`). |
+| options| MongoDB connection parameters.<br/>Defaults to `{maxPoolSize: 2}`). |
 | collection | The name of the collection you want to store log messages in.<br/>Defaults to `log`. |
 | level  | Level of messages that this transport should log.<br/>Defaults to `info`. |
 | silent | Boolean flag indicating whether to suppress output.<br/>Defaults to `false`. |
