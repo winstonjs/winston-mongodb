@@ -4,12 +4,16 @@
   "version": "5.1.1",
   "description": "A MongoDB transport for winston",
   "author": "Charlie Robbins <charlie.robbins@gmail.com>",
+  "maintainers": [
+     "David Hyde <dabh@alumni.stanford.edu>"
+  ],
   "contributors": [
     {
       "name": "Yurij Mikhalevich",
       "email": "yurij@mikhalevi.ch",
       "url": "https://mikhalevi.ch/"
     },
+
     {
       "name": "Kendrick Taylor",
       "email": "sktayloriii@gmail.com"
