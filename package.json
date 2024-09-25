@@ -1,11 +1,11 @@
 {
   "name": "winston-mongodb",
   "license": "MIT",
-  "version": "5.1.1",
+  "version": "6.0.0",
   "description": "A MongoDB transport for winston",
   "author": "Charlie Robbins <charlie.robbins@gmail.com>",
   "maintainers": [
-     "David Hyde <dabh@alumni.stanford.edu>"
+    "David Hyde <dabh@alumni.stanford.edu>"
   ],
   "contributors": [
     {
@@ -13,7 +13,6 @@
       "email": "yurij@mikhalevi.ch",
       "url": "https://mikhalevi.ch/"
     },
-
     {
       "name": "Kendrick Taylor",
       "email": "sktayloriii@gmail.com"
