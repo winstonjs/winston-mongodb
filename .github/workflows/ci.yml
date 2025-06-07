@@ -22,7 +22,6 @@ jobs:
         mongo:
           - v6.0-latest
           - v5.0-latest
-          - v4.4-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
