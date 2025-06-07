@@ -19,9 +19,12 @@ jobs:
           - 16
           - 18
           - 20
+          - 22
         mongo:
-          - v6.0-latest
           - v5.0-latest
+          - v6.0-latest
+          - v7.0-latest
+          - v8.0-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
