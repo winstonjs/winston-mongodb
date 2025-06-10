@@ -48,7 +48,7 @@
     "dotenv": "^16.1.4",
     "ip": "^2.0.1",
     "mocha": "^10.2.0",
-    "mongodb-memory-server": "^9.1.4",
+    "mongodb-memory-server": "^10.1.4",
     "mongoose": "^8.0.0",
     "winston": "^3.3.3"
   },
