@@ -45,7 +45,7 @@
   "devDependencies": {
     "@dabh/eslint-config-populist": "^5.0.0",
     "abstract-winston-transport": "~0.5.1",
-    "dotenv": "^16.1.4",
+    "dotenv": "^17.2.1",
     "ip": "^2.0.1",
     "mocha": "^10.2.0",
     "mongodb-memory-server": "^10.1.4",
