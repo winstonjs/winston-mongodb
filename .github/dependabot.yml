@@ -4,7 +4,13 @@ updates:
     directory: /
     schedule:
       interval: weekly
+    # Delay version updates to avoid compromised packages
+    cooldown:
+      default-days: 7
   - package-ecosystem: npm
     directory: /
     schedule:
       interval: weekly
+    # Delay version updates to avoid compromised packages
+    cooldown:
+      default-days: 7
